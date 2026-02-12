@@ -1,0 +1,17 @@
+/* لإخفاء الشريط في كل الصفحة */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* في فايرفوكس */
+html {
+  scrollbar-width: none;
+}
+
+/* في Edge و Safari */
+body {
+  -ms-overflow-style: none;
+  margin: 0px;
+    font-family: 'Inter', sans-serif;
+
+}

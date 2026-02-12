@@ -1,0 +1,29 @@
+/* العنصر النشط */
+.active-nav {
+  position: relative;
+  font-weight: 500;
+  background: linear-gradient(90deg, #00f2fe, #003cbe, #00f2fe);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientText 3s ease infinite;
+}
+
+/* الخط السفلي المتحرك */
+.active-nav::after {
+  content: "";
+  position: absolute;
+  bottom: -5px; /* تحت النص مباشرة */
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, #00f2fe, #003cbe, #00f2fe);
+  background-size: 200% 200%;
+  animation: gradientUnderline 3s ease ;
+}
+
+@keyframes gradientUnderline {
+  0% { background-position: 0% 50%; transform: scaleX(0); transform-origin: right; }
+  50% { background-position: 100% 50%; transform: scaleX(1); transform-origin: left; }
+  100% { background-position: 0% 50%; transform: scaleX(1); transform-origin: left; }
+}

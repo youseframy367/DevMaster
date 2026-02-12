@@ -1,0 +1,35 @@
+body{
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+    -ms-overflow-style: none;
+    margin:0px;
+
+}
+
+
+@keyframes rotateText {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.textPath {
+  transform-origin: 50% 50%;
+  animation: rotateText 20s linear infinite;
+}
+
+/* لإخفاء الشريط في كل الصفحة */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* في فايرفوكس */
+html {
+  scrollbar-width: none;
+}
+
+/* في Edge و Safari */
+
+
