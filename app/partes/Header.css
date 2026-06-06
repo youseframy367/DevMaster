@@ -1,0 +1,172 @@
+.active-nav {
+  position: relative;
+  font-weight: 500;
+  background: linear-gradient(90deg, #00f2fe, #003cbe, #00f2fe);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientText 3s ease infinite;
+}
+.active-button {
+  position: relative;
+  font-weight: 500;
+  background: linear-gradient(90deg, #00f2fe, #003cbe, #00f2fe);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientText 3s ease infinite;
+}
+
+.active-nav::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, #00f2fe, #003cbe, #00f2fe);
+  background-size: 200% 200%;
+  animation: gradientUnderline 3s ease;
+}
+
+@keyframes gradientUnderline {
+  0% {
+    background-position: 0% 50%;
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+
+  50% {
+    background-position: 100% 50%;
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  100% {
+    background-position: 0% 50%;
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradientShift 3s ease infinite;
+}
+
+.nav-gradient {
+  background: linear-gradient(90deg,
+      #00f2fe,
+      #003cbe,
+      #00f2fe);
+
+  background-size: 200% 200%;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: gradientText 3s ease infinite;
+
+  font-weight: 500;
+}
+
+@keyframes gradientText {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes borderShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes borderShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradientShift {
+  animation: gradientShift 3s ease infinite;
+}
+
+.animate-borderShift {
+  animation: borderShift 3s ease infinite;
+}
