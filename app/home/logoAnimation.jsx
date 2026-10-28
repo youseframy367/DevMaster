@@ -5,7 +5,7 @@ export default function LogoAnimation({
   width = 100,
   height = "170",
   heightImgAnimwtion = "60",
-  marginLogo = "30"
+  marginLogo = "20"
 }) {
   const logos = [
     "/icon/e6b08986e699dd21b87627e3b0a86a309ee36f03.png",
@@ -68,7 +68,7 @@ export default function LogoAnimation({
    
       <div
       data-aos="fade-up"
-        className={`relative w-[100%] md:h-[170px] h-[50px] mb-[40px] overflow-hidden bg-cover  bg-center bg-no-repeat z-[200] mt-[20px] md:mt-[-230px]`}
+        className={`relative w-[100%] md:h-[170px] h-[40px] mb-[40px] overflow-hidden bg-cover  bg-center bg-no-repeat z-[200] mt-[20px] md:mt-[-230px]`}
         style={{
       
           backgroundImage: "url('/icon/backgroundLogo.svg')",
