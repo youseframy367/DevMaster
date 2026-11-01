@@ -1,4 +1,4 @@
-import img from "/icon/logo.png"; // ← صحح المسار وغيّر “ ” إلى "
+import img from "/icon/logo.png"; 
 import imgOne from "/icon/Group 1597883107.png";
 
 export default function CeoMaseg() {

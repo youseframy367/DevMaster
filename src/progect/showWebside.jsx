@@ -6,12 +6,11 @@ export default function ShowBroject({ project, onClose }) {
   if (!project) return null;
 
 
-  // 🧊 إيقاف التمرير في الصفحة أثناء فتح المودال
   useEffect(() => {
     const originalStyle = window.getComputedStyle(document.body).overflow;
-    document.body.style.overflow = "hidden"; // يمنع التحريك
+    document.body.style.overflow = "hidden"; 
     return () => {
-      document.body.style.overflow = originalStyle; // يرجع طبيعي بعد الغلق
+      document.body.style.overflow = originalStyle; 
     };
   }, []);
 
@@ -29,7 +28,7 @@ export default function ShowBroject({ project, onClose }) {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        zIndex: 9999999999, // أعلى حاجة ممكنة
+        zIndex: 9999999999, 
         animation: "fadeIn 0.3s ease-out",
         overflow: "hidden",
       }}
@@ -50,19 +49,19 @@ export default function ShowBroject({ project, onClose }) {
         }}
         onClick={(e) => e.stopPropagation()} // يمنع غلق المودال عند الضغط جوّاه
       >
-        {/* زر الإغلاق */}
+       
   <button
   onClick={onClose}
   style={{
     position: "absolute",
 background: "transparent",
     top: "15px",
-    right: "15px",  // ممكن تغيّر لـ left إذا تحب
+    right: "15px", 
     border: "none",
     color: "#fff",
     fontSize: "24px",
     cursor: "pointer",
-    zIndex: 999999, // فوق أي محتوى داخل المودال
+    zIndex: 999999, 
     padding: "5px 10px",
     borderRadius: "8px",
     transition: "background 0.2s",
@@ -73,7 +72,6 @@ background: "transparent",
 </button>
 
 
-        {/* صورة الموقع */}
         <div
           className="modal-scroll"
           style={{
@@ -92,7 +90,7 @@ background: "transparent",
           position: "sticky",
           top: 0,
           height: "10px",
-          width:"100%", // العرض حسب Scroll
+          width:"100%", 
 background: "linear-gradient(to bottom, #131313A3, #FFFFFF80)",
           transition: "width 0.1s ease-out",
           zIndex: 10,
@@ -128,7 +126,6 @@ background: "linear-gradient(to bottom, #131313A3, #FFFFFF80)",
         </div>
       </div>
 
-      {/* 💅 أنيميشن و responsive */}
       <style>
         {`
   /* Chrome, Safari, Opera */
@@ -161,6 +158,5 @@ background: "linear-gradient(to bottom, #131313A3, #FFFFFF80)",
     </div>
   );
 
-  // ✅ نعرض المودال فوق كل عناصر React باستخدام Portal
   return createPortal(modal, document.body);
 }
