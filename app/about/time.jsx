@@ -1,42 +1,47 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const timelineData = {
-  title: "Dev Master Journey Through Time",
-  events: [
-    {
-      year: "2021",
-      description:
-        "In 2021, DevMaster was established in Egypt, marking the beginning of a journey fueled by innovation and determination. From the outset, our company embraced a spirit of creativity, striving to deliver solutions that are not only effective but also distinctive and forward-thinking.",
-    },
-    {
-      year: "2022",
-      description:
-        "In 2022, DevMaster continued its growth journey, strengthening its position in the market through innovative solutions and a commitment to excellence.",
-    },
-    {
-      year: "2023",
-      description:
-        "In 2023, DevMaster expanded its capabilities and built stronger partnerships, helping clients achieve sustainable growth and digital transformation.",
-    },
-    {
-      year: "2024",
-      description:
-        "In 2024, DevMaster focused on innovation and quality, delivering cutting-edge services and reinforcing its commitment to client success.",
-    },
-    {
-      year: "2025",
-      description:
-        "In 2025, DevMaster reached new milestones, building long-term relationships with clients and continuing its mission to provide impactful and forward-thinking solutions.",
-    },
-  ],
-};
+const TITLE = "Dev Master Journey Through Time";
+const API_URL = "http://localhost:3001/about/experience";
 
 export default function TimeStart() {
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   const [expanded, setExpanded] = useState(false);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    const fetchEvents = async () => {
+      try {
+        const res = await fetch(API_URL, { signal: controller.signal });
+        if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);
+
+        const data = await res.json();
+        setEvents(Array.isArray(data) ? data : data?.data || []);
+      } catch (error) {
+        if (error.name !== "AbortError") {
+          console.error("Error fetching years experience:", error);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEvents();
+    return () => controller.abort();
+  }, []);
+
+  const activeEvent = events[activeIndex];
+
+  if (loading) {
+    return <p className="text-white text-center mt-6">Loading...</p>;
+  }
+
+  if (events.length === 0) return null;
 
   return (
     <>
@@ -44,17 +49,12 @@ export default function TimeStart() {
 
       <section className="hidden lg:flex w-[90%] mx-auto text-white mt-[-135px] relative z-50">
         <div className="w-[60%] flex flex-col gap-5">
-          <h2 className="text-[36px] font-bold mt-[-60px]">
-            {timelineData.title}
-          </h2>
+          <h2 className="text-[36px] font-bold mt-[-60px]">{TITLE}</h2>
 
           <div className="flex gap-10 mt-5">
             <div className="relative w-[90px] flex flex-col items-center">
-              {timelineData.events.map((item, i) => (
-                <div
-                  key={i}
-                  className="flex flex-col items-center"
-                >
+              {events.map((item, i) => (
+                <div key={item.id ?? i} className="flex flex-col items-center">
                   <button
                     onClick={() => setActiveIndex(i)}
                     className={`
@@ -72,7 +72,7 @@ export default function TimeStart() {
                       z-10
                       ${
                         activeIndex === i
-                          ? "bg-[#003FCA] text-white  scale-[1.2]"
+                          ? "bg-[#003FCA] text-white scale-[1.2]"
                           : "bg-[#0A0A23] text-white"
                       }
                     `}
@@ -80,7 +80,7 @@ export default function TimeStart() {
                     {item.year}
                   </button>
 
-                  {i !== timelineData.events.length - 1 && (
+                  {i !== events.length - 1 && (
                     <div className="flex flex-col items-center">
                       <div className="h-[15px] w-[2px] bg-[#003FCA]" />
                       <div className="w-[6px] h-[6px] rounded-full bg-[#003FCA]" />
@@ -101,7 +101,7 @@ export default function TimeStart() {
                   transition={{ duration: 0.4 }}
                 >
                   <p className="text-[18px] pr-[10px] leading-[30px] text-[#E2DEDC]">
-                    {timelineData.events[activeIndex].description}
+                    {activeEvent?.description}
                   </p>
                 </motion.div>
               </AnimatePresence>
@@ -126,24 +126,24 @@ export default function TimeStart() {
       {/* ================= MOBILE ================= */}
 
       <section className="lg:hidden w-full px-0 mt-6">
-      <div
-  className="
-    flex
-    justify-center
-    items-center
-    gap-3
-    pb-3
-    overflow-x-auto
-    overflow-y-hidden
-    no-scrollbar
-    bg-white
-    h-[36px]
-    w-full
-  "
->
-          {timelineData.events.map((item, index) => (
+        <div
+          className="
+            flex
+            justify-center
+            items-center
+            gap-3
+            pb-3
+            overflow-x-auto
+            overflow-y-hidden
+            no-scrollbar
+            bg-white
+            h-[36px]
+            w-full
+          "
+        >
+          {events.map((item, index) => (
             <button
-              key={index}
+              key={item.id ?? index}
               onClick={() => setActiveIndex(index)}
               className={`
                 w-[103px]
@@ -205,7 +205,7 @@ export default function TimeStart() {
                 text-transparent
               "
             >
-              {timelineData.title}
+              {TITLE}
             </h2>
 
             <p
@@ -215,14 +215,10 @@ export default function TimeStart() {
                 text-[12px]
                 leading-[20px]
                 cursor-pointer
-                ${
-                  !expanded
-                    ? "line-clamp-2"
-                    : ""
-                }
+                ${!expanded ? "line-clamp-2" : ""}
               `}
             >
-              {timelineData.events[activeIndex].description}
+              {activeEvent?.description}
             </p>
 
             <div className="flex justify-center mt-5">

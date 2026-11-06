@@ -5,67 +5,45 @@ import useEmblaCarousel from "embla-carousel-react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 
-export const artical = {
-    artical1: {
-        img: "/icon/Group 1261153701(1).png",
-        title: "Market Analysis",
-        artical:
-            "We provide precise market analyses that help you understand trends, competitors, and customer needs to make successful strategic decisions.",
-        linK: "",
-        date: "24 Dec 2025",
-    },
-    artical2: {
-        img: "/icon/Group 1261153701(2).png",
-        title: "Digital Marketing Agency",
-        artical:
-            "We provide end-to-end digital solutions to help your business thrive. From strategy and content creation to SEO and social media management.",
-        linK: "",
-        date: "24 juin 2025",
-    },
-    artical3: {
-        img: "/icon/Group 1261153701.png",
-        title: "Nom du blog",
-        artical:
-            "Explanatory text indicating the presence of alternative text here Text here.",
-        linK: "",
-        date: "24 juin 2025",
-    },
-    artical4: {
-        img: "/imgTwo/newOne.png",
-        title: "Market Analysis",
-        artical:
-            "We provide precise market analyses that help you understand trends and competitors.",
-        linK: "",
-        date: "24 juin 2025",
-    },
-    artical5: {
-        img: "/imgTwo/newTwo.png",
-        title: "Digital Marketing Agency",
-        artical:
-            "Stay updated with the latest trends and strategies shaping the business world.",
-        linK: "",
-        date: "24 juin 2025",
-    },
-    artical6: {
-        img: "/imgTwo/newThree.png",
-        title: "Business Trends",
-        artical:
-            "Explore the latest developments and insights shaping today’s business landscape.",
-        linK: "",
-        date: "24 juin 2025",
-    },
-};
+
 
 export default function Articles({
     numper = 3,
     showBotton = true,
     gap = 20,
+    showBorder = true,
 }) {
     const router = useRouter();
-    const items = Object.values(artical).slice(0, numper);
-
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
     const [selectedIndex, setSelectedIndex] = useState(0);
+
+
+    const ARTICLES_URL = "http://localhost:3001/articles";
+const [articles, setArticles] = useState([]);
+const [loading, setLoading] = useState(true);
+const items = articles.slice(0, numper);
+
+useEffect(() => {
+    const fetchArticles = async () => {
+        try {
+            const res = await fetch(ARTICLES_URL);
+
+            if (!res.ok) {
+                throw new Error(`HTTP Error: ${res.status}`);
+            }
+
+            const data = await res.json();
+
+            setArticles(Array.isArray(data) ? data : data?.data || []);
+        } catch (error) {
+            console.error("Error fetching articles:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    fetchArticles();
+}, []);
 
     const scrollPrev = useCallback(() => {
         if (emblaApi) emblaApi.scrollPrev();
@@ -109,19 +87,22 @@ export default function Articles({
 
     return (
         <section className="w-full md:py-16  relative">
-            {/* borders */}
-            <motion.div
-                variants={borderPulse}
-                animate="animate"
-                className="absolute hidden md:block right-[3%] top-[-277px] w-[4%] h-[280px] border-[3px] border-blue-500 border-l-0 rounded-r-[46px]"
-            />
+          {showBorder && (
+                <>
+                    {/* borders */}
+                    <motion.div
+                        variants={borderPulse}
+                        animate="animate"
+                        className="absolute hidden md:block right-[3%] top-[-277px] w-[4%] h-[280px] border-[3px] border-blue-500 border-l-0 rounded-r-[46px]"
+                    />
 
-            <motion.div
-                variants={borderPulse}
-                animate="animate"
-                className="absolute  hidden md:block left-[2%] top-0 w-[91%] h-[300px] border-[3px] border-blue-500 border-r-0 border-b-0 rounded-l-[46px]"
-            />
-
+                    <motion.div
+                        variants={borderPulse}
+                        animate="animate"
+                        className="absolute hidden md:block left-[2%] top-0 w-[91%] h-[300px] border-[3px] border-blue-500 border-r-0 border-b-0 rounded-l-[46px]"
+                    />
+                </>
+            )}
 
             {/* ================= DESKTOP GRID ================= */}
             <div className="">
@@ -190,7 +171,7 @@ export default function Articles({
                             className="rounded-[20px] bg-[rgba(21,21,21,0.6)]  backdrop-blur-[30px] p-4 shadow-[-1px_-1px_1px_rgba(168,166,166,0.4)]"
                         >
                             <img
-                                src={item.img}
+                                src={item.image}
                                 alt={item.title}
                                 className="w-full rounded-[10px]"
                             />
@@ -201,7 +182,7 @@ export default function Articles({
                             </div>
 
                             <p className="text-[#CAC6DD] text-[14px] mt-2">
-                                {item.artical}
+                                {item.description}
                             </p>
                         </div>
                     ))}
@@ -236,7 +217,7 @@ export default function Articles({
                                 <div className="rounded-[20px] bg-[rgba(21,21,21,0.6)] backdrop-blur-[30px] p-4 text-white">
 
                                     <img
-                                        src={item.img}
+                                        src={item.image}
                                         alt={item.title}
                                         className="w-full rounded-[10px]"
                                     />
@@ -251,7 +232,7 @@ export default function Articles({
                                     </div>
 
                                     <p className="text-[#CAC6DD] text-[13px] mt-2">
-                                        {item.artical}
+                                        {item.description}
                                     </p>
 
                                 </div>

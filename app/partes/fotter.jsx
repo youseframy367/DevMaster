@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
@@ -14,6 +15,34 @@ import {
 export default function Footer({ top = true }) {
   const router = useRouter();
 
+  const [socials, setSocials] = useState([]);
+
+
+useEffect(() => {
+  const getSocials = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:3001/about/social-media",
+        {
+          cache: "no-store",
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch social media");
+      }
+
+      const data = await response.json();
+
+      setSocials(data);
+    } catch (error) {
+      console.error("Social Media Error:", error);
+    }
+  };
+
+  getSocials();
+}, []);
+
   const fadeUp = {
     hidden: {
       opacity: 0,
@@ -23,7 +52,6 @@ export default function Footer({ top = true }) {
     visible: (i) => ({
       opacity: 1,
       y: 0,
-
       transition: {
         delay: i * 0.15,
         duration: 0.7,
@@ -31,27 +59,13 @@ export default function Footer({ top = true }) {
     }),
   };
 
-  const socials = [
-    {
-      icon: FaFacebookF,
-      href: "https://www.facebook.com/share/1GK7wnD318/",
-    },
-
-    {
-      icon: FaWhatsapp,
-      href: "https://wa.me/201055395693",
-    },
-
-    {
-      icon: FaInstagram,
-      href: "https://www.instagram.com/hvshim10?igsh=c3o2aTA5eGM3ejF6",
-    },
-
-    {
-      icon: FaLinkedinIn,
-      href: "https://www.linkedin.com/in/dev-master-78005b393",
-    },
-  ];
+  // Social Media Icons
+  const socialIcons = {
+    facebook: FaFacebookF,
+    instagram: FaInstagram,
+    linkedin: FaLinkedinIn,
+    whatsapp: FaWhatsapp,
+  };
 
   return (
     <footer
@@ -86,14 +100,7 @@ export default function Footer({ top = true }) {
           >
             <div className="flex flex-col items-center lg:items-start">
               <h2
-                className="text-3xl font-normal leading-tight sm:text-4xl md:text-6xl 
-                   bg-gradient-to-l from-[#9795FF] via-white to-[#BE9FFF]
-    bg-[length:400%_400%]
-    bg-clip-text text-transparent
-    animate-gradient
-    text-center
-                
-                "
+                className="text-3xl font-normal leading-tight sm:text-4xl md:text-6xl bg-gradient-to-l from-[#9795FF] via-white to-[#BE9FFF] bg-[length:400%_400%] bg-clip-text text-transparent animate-gradient text-center"
                 style={{
                   backgroundImage:
                     "linear-gradient(270deg, #9795FF, #FFFFFF, #FFFFFF, #BE9FFF)",
@@ -113,14 +120,13 @@ export default function Footer({ top = true }) {
             <motion.button
               whileHover={{
                 scale: 1.05,
-                boxShadow:
-                  "0px 0px 25px rgba(255,255,255,0.4)",
+                boxShadow: "0px 0px 25px rgba(255,255,255,0.4)",
               }}
               whileTap={{
                 scale: 0.95,
               }}
-              onClick={() => router.push("/serverReqst")}
-              className="flex cursor-pointer items-center gap-[6px] rounded-full w-[80%] md:w-auto justify-center  bg-white px-7 py-4 text-[16px] font-medium text-[#16121E] transition-all duration-300 "
+              onClick={() => router.push("../servesRequest")}
+              className="flex cursor-pointer items-center gap-[6px] rounded-full w-[80%] md:w-auto justify-center bg-white px-7 py-4 text-[16px] font-medium text-[#16121E] transition-all duration-300"
             >
               Service Request
 
@@ -159,11 +165,7 @@ export default function Footer({ top = true }) {
               </h3>
             </div>
 
-            <p className="mt-5 leading-7    bg-gradient-to-l from-[#9795FF] via-white to-[#BE9FFF]
-    bg-[length:400%_400%]
-    bg-clip-text text-transparent
-    animate-gradient
-  ">
+            <p className="mt-5 leading-7 bg-gradient-to-l from-[#9795FF] via-white to-[#BE9FFF] bg-[length:400%_400%] bg-clip-text text-transparent animate-gradient">
               Dev Master empowers businesses and individuals to
               build, grow, and scale with future-ready digital
               solutions.
@@ -266,33 +268,36 @@ export default function Footer({ top = true }) {
             </li>
           </ul>
 
-          {/* Social Icons */}
-          <div className="flex items-center justify-center gap-5">
-            {socials.map((social, i) => {
-              const Icon = social.icon;
+         {/* Social Icons From Backend */}
+<div className="flex items-center justify-center gap-5">
+  {socials.map((social) => {
+    const Icon = socialIcons[social.title?.toLowerCase()];
 
-              return (
-                <motion.a
-                  key={i}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{
-                    y: -5,
-                    scale: 1.15,
-                  }}
-                  whileTap={{
-                    scale: 0.9,
-                  }}
-                  className="rounded-full border border-white/10 bg-white/5 p-3 transition-all duration-300 hover:border-[#003ACA] hover:bg-[#003ACA]"
-                >
-                  <Icon size={20} />
-                </motion.a>
-              );
-            })}
-          </div>
-        </div>
-      </div>
+    if (!Icon) return null;
+
+    return (
+      <motion.a
+        key={social.id}
+        href={social.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        whileHover={{
+          y: -5,
+          scale: 1.15,
+        }}
+        whileTap={{
+          scale: 0.9,
+        }}
+        className="rounded-full border border-white/10 bg-white/5 p-3 transition-all duration-300 hover:border-[#003ACA] hover:bg-[#003ACA]"
+      >
+        <Icon size={20} />
+      </motion.a>
+    );
+  })}
+</div>
+</div>
+</div>
+
     </footer>
   );
 }
