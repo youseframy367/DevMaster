@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { LayoutDashboard, LogOut, Menu, X, UserRound } from "lucide-react";
+import { KeyRound, LayoutDashboard, LogOut, Menu, X, UserRound } from "lucide-react";
 import { clearAccessToken, getCurrentUser } from "../lib/auth";
 
 const navigation = [
@@ -18,6 +18,7 @@ const navigation = [
   { href: "/dashboard/job-applications", label: "Job Applications", icon: UserRound },
   { href: "/dashboard/projects", label: "Projects", icon: UserRound },
   { href: "/dashboard/service-requests", label: "Service Requests", icon: UserRound },
+  { href: "/dashboard/accounts", label: "Accounts", icon: KeyRound, adminOnly: true },
 ];
 
 export default function DashboardLayout({ children }) {
@@ -62,6 +63,8 @@ export default function DashboardLayout({ children }) {
     router.replace("/dashboard/login");
   };
 
+  const canManageAccounts = String(user?.role || user?.user?.role || user?.data?.role || "").toUpperCase() === "ADMIN";
+
   return (
     <div className="min-h-screen text-white">
       <button
@@ -82,7 +85,7 @@ export default function DashboardLayout({ children }) {
         </div>
 
         <nav className="flex flex-col gap-2">
-          {navigation.map(({ href, label, icon: Icon }) => {
+          {navigation.filter((item) => !item.adminOnly || canManageAccounts).map(({ href, label, icon: Icon }) => {
             const active = href === "/dashboard" ? pathname === href : pathname.startsWith(href);
             return (
               <Link

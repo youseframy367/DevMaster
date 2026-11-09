@@ -12,16 +12,19 @@ export default function Header() {
   const pathname = usePathname();
 
   useEffect(() => {
+    if (pathname.startsWith("/dashboard")) return undefined;
+
     const handleScroll = () => {
-      setScrollTop(window.scrollY > 780);
+      const nextScrollState = window.scrollY > 780;
+      setScrollTop((currentScrollState) => currentScrollState === nextScrollState ? currentScrollState : nextScrollState);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [pathname]);
 
   const navItems = [
     "Home",
@@ -89,6 +92,8 @@ export default function Header() {
   ];
 
   const isServerRequest = pathname === "/serverReqst";
+
+  if (pathname.startsWith("/dashboard")) return null;
 
   return (
     <>

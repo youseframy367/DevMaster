@@ -24,6 +24,7 @@
     { "path": "/dashboard/jobs", "title": "Manage Jobs" },
     { "path": "/dashboard/job-applications", "title": "Review Job Applications" },
     { "path": "/dashboard/projects", "title": "Manage Projects" },
-    { "path": "/dashboard/service-requests", "title": "Manage Service Requests" }
+    { "path": "/dashboard/service-requests", "title": "Manage Service Requests" },
+    { "path": "/dashboard/accounts", "title": "Manage Accounts (Admin)" }
   ]
 }

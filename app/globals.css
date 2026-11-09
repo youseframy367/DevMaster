@@ -19,3 +19,12 @@
 .title-gradient {
   animation: gradientShift 3s ease infinite;
 }
+
+.dashboard-scrollbar-hidden {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.dashboard-scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}

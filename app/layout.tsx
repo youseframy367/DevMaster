@@ -3,6 +3,7 @@ import { Cairo } from "next/font/google";
 import "./globals.css";
 import "./animationGloble.css";
 import Header from "./partes/Header";
+import SiteBackground from "./components/SiteBackground";
 import { Inter } from "next/font/google";
 const cairo = Cairo({
   variable: "--font-cairo",
@@ -24,27 +25,6 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const balls = [
-  { side: "right", top: "250px" },
-  { side: "left", top: "550px" },
-  { side: "right", top: "850px" },
-  { side: "left", top: "1150px" },
-  { side: "right", top: "1450px" },
-  { side: "left", top: "1750px" },
-  { side: "right", top: "2150px" },
-  { side: "left", top: "2550px" },
-  { side: "right", top: "3050px" },
-  { side: "left", top: "3350px" },
-  { side: "right", top: "3650px" },
-  { side: "left", top: "3950px" },
-  { side: "right", top: "4250px" },
-  { side: "left", top: "4550px" },
-  { side: "right", top: "4750px" },
-  { side: "left", top: "5150px" },
-  { side: "right", top: "5550px" },
-  { side: "left", top: "5750px" },
-];
-
 export default function RootLayout({
   children,
 }: {
@@ -57,29 +37,7 @@ export default function RootLayout({
     >
       <body className="min-h-screen bg-black relative overflow-x-hidden ">
 
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {balls.map((ball, index) => (
-            <div
-              key={index}
-              className="
-                absolute
-                md:w-[640px]
-                w-[200px]
-                h-[287px]
-                rounded-full
-                bg-blue-900
-                blur-[100px]
-                opacity-[50px]
-                animate-float
-              "
-              style={{
-                [ball.side]: "-35%",
-                top: ball.top,
-                animationDelay: `${index * 0.6}s`,
-              }}
-            />
-          ))}
-        </div>
+        <SiteBackground />
 
         <Header />
         
