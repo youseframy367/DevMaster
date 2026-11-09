@@ -1,0 +1,44 @@
+{
+  "slug": "cookie-policy",
+  "title": "Cookie Policy",
+  "backLinkText": "Return to Home",
+  "intro": "This Cookie Policy explains how DevMaster may use cookies and similar technologies to support the website.",
+  "sections": [
+    {
+      "heading": "What Cookies Are",
+      "paragraphs": [
+        "Cookies are small text files stored on your device by a website. They can help a website remember preferences, maintain basic functionality, and understand how visitors use its pages."
+      ]
+    },
+    {
+      "heading": "How We May Use Cookies",
+      "paragraphs": [
+        "DevMaster may use cookies or similar technologies that are necessary for the website to function, remember basic preferences, support navigation, or help us understand website performance."
+      ]
+    },
+    {
+      "heading": "Managing Cookies",
+      "paragraphs": [
+        "Most browsers allow you to review, block, or delete cookies through their settings. Disabling some cookies may affect parts of the website or reduce the functionality available to you."
+      ]
+    },
+    {
+      "heading": "Third-Party Services",
+      "paragraphs": [
+        "Some website features may rely on third-party services that use their own technologies. Those services are responsible for explaining their own practices in their respective policies."
+      ]
+    },
+    {
+      "heading": "Policy Updates",
+      "paragraphs": [
+        "We may update this Cookie Policy when the website or the technologies used on it change. The updated version will be published on this page."
+      ]
+    },
+    {
+      "heading": "Contact Us",
+      "paragraphs": [
+        "If you have questions about this Cookie Policy, please contact the DevMaster team through the contact details available on this website."
+      ]
+    }
+  ]
+}

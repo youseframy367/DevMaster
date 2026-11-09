@@ -4,6 +4,7 @@
 import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { useRouter } from "next/navigation";
+import { apiUrl } from "../lib/api";
 import { motion } from "framer-motion";
 
 export default function Jobs({ numper = 6, showbutton = true }) {
@@ -19,7 +20,7 @@ export default function Jobs({ numper = 6, showbutton = true }) {
       try {
         const token = localStorage.getItem("accessToken");
 
-const response = await fetch("http://localhost:3001/jobs", {
+const response = await fetch(apiUrl("/jobs"), {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,

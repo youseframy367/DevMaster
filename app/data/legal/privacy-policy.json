@@ -1,0 +1,46 @@
+{
+  "slug": "privacy-policy",
+  "title": "Privacy Policy",
+  "backLinkText": "Return to Home",
+  "intro": "This Privacy Policy explains how DevMaster handles information when you use our website and contact our team.",
+  "sections": [
+    {
+      "heading": "Information We Receive",
+      "paragraphs": [
+        "We may receive information that you choose to provide when you contact us, request a service, submit an application, or communicate with our team.",
+        "This information may include your name, email address, phone number, message details, application information, and files that you voluntarily submit."
+      ]
+    },
+    {
+      "heading": "How We Use Information",
+      "paragraphs": [
+        "We use submitted information to respond to inquiries, provide requested services, review job applications, communicate about requests, and improve the website and our services.",
+        "We do not use personal information for purposes that are incompatible with the reason it was provided."
+      ]
+    },
+    {
+      "heading": "Information Sharing",
+      "paragraphs": [
+        "We do not sell personal information. We may share information only when needed to respond to your request, operate the website, comply with applicable law, or protect the rights and security of DevMaster and others."
+      ]
+    },
+    {
+      "heading": "Data Retention",
+      "paragraphs": [
+        "We keep information only for as long as it is reasonably needed for the purpose for which it was collected, to maintain records, or to meet legal obligations."
+      ]
+    },
+    {
+      "heading": "Your Choices",
+      "paragraphs": [
+        "You may contact us to ask about the personal information you have provided, request a correction, or ask us to remove it when appropriate and permitted by law."
+      ]
+    },
+    {
+      "heading": "Contact Us",
+      "paragraphs": [
+        "If you have questions about this Privacy Policy or the way we handle information, please contact the DevMaster team through the contact details available on this website."
+      ]
+    }
+  ]
+}

@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { apiUrl } from "../lib/api"
 import { motion, AnimatePresence } from "framer-motion";
 
 const TITLE = "Dev Master Journey Through Time";
-const API_URL = "http://localhost:3001/about/experience";
+const API_URL = apiUrl("/about/experience");
 
 export default function TimeStart() {
   const [events, setEvents] = useState([]);

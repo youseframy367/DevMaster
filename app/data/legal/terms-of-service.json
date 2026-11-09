@@ -1,0 +1,48 @@
+{
+  "slug": "terms-of-service",
+  "title": "Terms of Service",
+  "backLinkText": "Return to Home",
+  "intro": "These Terms of Service describe the rules for using the DevMaster website and communicating with our team.",
+  "sections": [
+    {
+      "heading": "Using the Website",
+      "paragraphs": [
+        "You may use this website for lawful purposes and in a way that does not interfere with the website, its content, or other visitors.",
+        "You agree not to misuse the website, attempt unauthorized access, introduce harmful code, or use the website to violate applicable laws."
+      ]
+    },
+    {
+      "heading": "Website Content",
+      "paragraphs": [
+        "The website may include descriptions of DevMaster services, projects, articles, job opportunities, images, and other materials. This content is provided for general information and may be updated over time.",
+        "You may not copy, modify, publish, or reuse protected website content without permission from DevMaster or the applicable rights holder."
+      ]
+    },
+    {
+      "heading": "Requests and Communications",
+      "paragraphs": [
+        "Information submitted through contact forms, service requests, or job applications should be accurate and belong to you or be shared with proper authorization.",
+        "Submitting a request does not guarantee that DevMaster will accept or provide a particular service, opportunity, or response."
+      ]
+    },
+    {
+      "heading": "Third-Party Links",
+      "paragraphs": [
+        "The website may contain links to external websites or social platforms. DevMaster does not control those websites and is not responsible for their content, availability, or practices."
+      ]
+    },
+    {
+      "heading": "Availability and Changes",
+      "paragraphs": [
+        "We may update, suspend, or change parts of the website to maintain and improve it. We may also update these Terms when our website or services change.",
+        "The latest version published on this website applies from the date it is made available."
+      ]
+    },
+    {
+      "heading": "Contact Us",
+      "paragraphs": [
+        "If you have questions about these Terms of Service, please contact the DevMaster team through the contact details available on this website."
+      ]
+    }
+  ]
+}

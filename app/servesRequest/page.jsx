@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import Footer from "../partes/fotter";
+import { apiUrl } from "../lib/api";
 
 // غيّر الرابط حسب الـ endpoint عندك
-const API_URL ="http://localhost:3001/service-requests";
+const API_URL = apiUrl("/service-requests");
 
 const balls = [
   { side: "right", top: "100px" },

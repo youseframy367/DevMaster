@@ -10,6 +10,7 @@ import {
 import type { IconType } from "react-icons";
 
 import { useRouter } from "next/navigation";
+import { apiUrl } from "../lib/api";
 
 interface SocialMedia {
   id?: number;
@@ -32,7 +33,7 @@ export default function Baner() {
   useEffect(() => {
     const controller = new AbortController();
 
-    fetch("http://localhost:3001/about/social-media", {
+    fetch(apiUrl("/about/social-media"), {
       signal: controller.signal,
     })
       .then((res) => {

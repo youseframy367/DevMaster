@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import { apiUrl } from "../lib/api";
 
 
 
@@ -18,7 +19,7 @@ export default function Articles({
     const [selectedIndex, setSelectedIndex] = useState(0);
 
 
-    const ARTICLES_URL = "http://localhost:3001/articles";
+    const ARTICLES_URL = apiUrl("/articles");
 const [articles, setArticles] = useState([]);
 const [loading, setLoading] = useState(true);
 const items = articles.slice(0, numper);

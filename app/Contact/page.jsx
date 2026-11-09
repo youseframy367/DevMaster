@@ -3,16 +3,14 @@
 
 import React, { useState, useEffect } from "react";
 import Footer from "../partes/fotter";
+import { apiUrl } from "../lib/api";
 
 // رابط الباك اند الأساسي
-const BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
-
 // POST -> إرسال الفورم
-const CONTACT_URL = "http://localhost:3001/contacts";
+const CONTACT_URL = apiUrl("/contacts");
 
 // GET -> بيانات التواصل
-const CONTACT_INFO_URL = "http://localhost:3001/about/info";
+const CONTACT_INFO_URL = apiUrl("/about/info");
 
 // الكلاسات
 const balls = [
@@ -181,7 +179,7 @@ export default function Contact() {
           <div className="flex flex-col gap-2">
             <h1
               className="m-0 bg-[linear-gradient(270deg,#9795FF,#FFFFFF,#FFFFFF,#BE9FFF)]
-                         bg-clip-text text-[42px] font-normal leading-[56px] text-transparent
+                         bg-clip-text text-[42px] font-normal leading-[56px] text-transparent title-gradient
                          max-[1024px]:text-[36px] max-[1024px]:leading-[48px]
                          max-[480px]:text-[30px] max-[480px]:leading-[40px]"
             >
@@ -200,7 +198,7 @@ export default function Contact() {
             </p>
 
             <p className="m-0 font-normal leading-[28px] text-[#ccc] max-[480px]:leading-[26px]">
-              Do not hesitate to contact us to inquire about our company's
+              Do not hesitate to contact us to inquire about our company&apos;s
               services in the field of information technology. We will be happy
               to provide assistance and meet your needs efficiently and
               professionally.

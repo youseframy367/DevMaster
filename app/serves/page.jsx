@@ -124,7 +124,7 @@ export default function Serves() {
             <div className="flex w-full flex-col gap-4 pl-[90px]">
               <p
                 data-aos="fade-up"
-                className="bg-[linear-gradient(270deg,#9795FF,#FFFFFF,#FFFFFF,#BE9FFF)] bg-clip-text text-[68px] font-normal leading-[75px] text-transparent"
+                className="bg-[linear-gradient(270deg,#9795FF,#FFFFFF,#FFFFFF,#BE9FFF)] bg-clip-text text-[68px] font-normal leading-[75px] text-transparent title-gradient"
               >
                 Let’s work together with us
               </p>

@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { apiUrl } from "../lib/api";
 import { motion } from "framer-motion";
 
 import {
@@ -22,7 +24,7 @@ useEffect(() => {
   const getSocials = async () => {
     try {
       const response = await fetch(
-        "http://localhost:3001/about/social-media",
+        apiUrl("/about/social-media"),
         {
           cache: "no-store",
         }
@@ -246,25 +248,31 @@ useEffect(() => {
 
           {/* Footer Links */}
           <ul className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-300">
-            <li
-              onClick={() => router.push("/Pravic")}
-              className="cursor-pointer transition-all duration-300 hover:text-[#4D7CFF]"
-            >
-              Cookie Policy
+            <li>
+              <Link
+                href="/legal/cookie-policy"
+                className="transition-all duration-300 hover:text-[#4D7CFF]"
+              >
+                Cookie Policy
+              </Link>
             </li>
 
-            <li
-              onClick={() => router.push("/Pravic")}
-              className="cursor-pointer transition-all duration-300 hover:text-[#4D7CFF]"
-            >
-              Terms of Service
+            <li>
+              <Link
+                href="/legal/terms-of-service"
+                className="transition-all duration-300 hover:text-[#4D7CFF]"
+              >
+                Terms of Service
+              </Link>
             </li>
 
-            <li
-              onClick={() => router.push("/pravic")}
-              className="cursor-pointer transition-all duration-300 hover:text-[#4D7CFF]"
-            >
-              Privacy Policy
+            <li>
+              <Link
+                href="/legal/privacy-policy"
+                className="transition-all duration-300 hover:text-[#4D7CFF]"
+              >
+                Privacy Policy
+              </Link>
             </li>
           </ul>
 

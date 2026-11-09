@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import { apiUrl } from "../../lib/api";
 
 // كلاسات ثابتة (Tailwind مش بيقرأ كلاسات متولدة ديناميك)
 const balls = [
@@ -11,7 +13,6 @@ const balls = [
 ];
 
 export default function DetalesJop() {
-  const router = useRouter();
   const { id } = useParams();
 
   const [itemData, setItemData] = useState(null);
@@ -21,8 +22,6 @@ export default function DetalesJop() {
   // Fetch Job Details From Backend
   useEffect(() => {
     if (!id || id === "undefined") {
-      setError("Invalid job id");
-      setLoading(false);
       return;
     }
 
@@ -30,7 +29,7 @@ export default function DetalesJop() {
       try {
         const token = localStorage.getItem("accessToken");
 
-        const response = await fetch(`http://localhost:3001/jobs/${id}`, {
+        const response = await fetch(apiUrl(`/jobs/${id}`), {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -61,6 +60,10 @@ export default function DetalesJop() {
   }, [id]);
 
   // Loading
+  if (!id || id === "undefined") {
+    return <div className="text-center text-red-500">Invalid job id</div>;
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen bg-black pt-[100px] text-center text-white">
@@ -91,7 +94,7 @@ export default function DetalesJop() {
       {/* Content */}
       <div className="relative z-10 ml-[8%] w-[80%]">
         {/* Title */}
-        <h1 className="bg-[linear-gradient(270deg,#9795FF,#FFFFFF,#FFFFFF,#BE9FFF)] bg-clip-text text-[42px] font-normal leading-[75px] text-transparent">
+        <h1 className="bg-[linear-gradient(270deg,#9795FF,#FFFFFF,#FFFFFF,#BE9FFF)] bg-clip-text text-[42px] font-normal leading-[75px] text-transparent title-gradient">
           {itemData.name || itemData.title}
         </h1>
 
@@ -142,12 +145,12 @@ export default function DetalesJop() {
 
       {/* Apply Button */}
 <div className="gradient-btn relative z-10 ml-[8%] mt-12 w-fit rounded-[40px] p-[2px]">
-  <button
-onClick={() => router.push(`/JobsAll/ApplyForTheJop?jobId=${id}`)}
+  <Link
+    href={`/JobsAll/ApplyForTheJop?jobId=${id}`}
     className="flex cursor-pointer items-center gap-2 rounded-[40px] border-none bg-black px-8 py-[14px] text-[16px] font-medium text-white outline-none"
   >
     Apply Now <img src="/icon/uil_arrow-up(2).png" alt="" />
-  </button>
+  </Link>
 </div>
 
       <style>{`

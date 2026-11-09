@@ -1,11 +1,12 @@
 
 "use client";
 
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import Footer from "../../partes/fotter";
+import Footer from "../../partes/fotter"
+import { apiUrl } from "../../lib/api";
 
-export default function ApplyTheJop() {
+function ApplyTheJopForm() {
 const searchParams = useSearchParams();
 
   const jobId = Number(searchParams.get("jobId"));
@@ -53,7 +54,7 @@ const searchParams = useSearchParams();
         }
       });
 
-      const response = await fetch("http://localhost:3001/job-applications", {
+      const response = await fetch(apiUrl("/job-applications"), {
         method: "POST",
         body: data,
       });
@@ -120,7 +121,7 @@ const searchParams = useSearchParams();
 
           {/* Heading */}
           <div className="mb-8" data-aos="fade-up">
-            <h1 className="bg-gradient-to-r from-[#BE9FFF] via-white to-[#9795FF] bg-clip-text text-[28px] font-normal leading-[1.4] text-transparent sm:text-[42px] sm:leading-[75px]">
+            <h1 className="bg-gradient-to-r from-[#BE9FFF] via-white to-[#9795FF] bg-clip-text text-[28px] font-normal leading-[1.4] text-transparent title-gradient sm:text-[42px] sm:leading-[75px]">
               Apply for The Job Now
             </h1>
 
@@ -260,5 +261,14 @@ const searchParams = useSearchParams();
         </div>
       </section>
     </>
+  );
+}
+
+
+export default function ApplyTheJop() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-black" />}>
+      <ApplyTheJopForm />
+    </Suspense>
   );
 }

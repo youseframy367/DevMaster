@@ -6,8 +6,9 @@ import { motion } from "framer-motion";
 import "./baner.css";
 import ShowProject from "./showBrogect";
 import { useRouter } from "next/navigation";
+import { apiUrl } from "../lib/api";
 
-const API_URL = "http://localhost:3001/products";
+const API_URL = apiUrl("/products");
 
 const borderPulse = {
   animate: {

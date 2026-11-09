@@ -48,23 +48,7 @@
     transform-origin: left;
   }
 }
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
 
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.animate-gradient {
-  animation: gradientShift 3s ease infinite;
-}
 
 .nav-gradient {
   background: linear-gradient(90deg,
@@ -96,19 +80,6 @@
   }
 }
 
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
 
 @keyframes borderShift {
   0% {
@@ -135,19 +106,6 @@
 
 
 
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
 
 @keyframes borderShift {
   0% {
@@ -163,9 +121,6 @@
   }
 }
 
-.animate-gradientShift {
-  animation: gradientShift 3s ease infinite;
-}
 
 .animate-borderShift {
   animation: borderShift 3s ease infinite;

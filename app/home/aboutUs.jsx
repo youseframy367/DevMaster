@@ -3,8 +3,9 @@
 import { motion } from "framer-motion";
 import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import { apiUrl } from "../lib/api";
 
-const API_URL = "http://localhost:3001/comments";
+const API_URL = apiUrl("/comments");
 
 const borderPulse = {
   animate: {

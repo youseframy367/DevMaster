@@ -1,1 +1,21 @@
 @import "tailwindcss";
+
+/* Shared gradient animation used by existing headings and highlighted labels. */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient,
+.title-gradient {
+  animation: gradientShift 3s ease infinite;
+}

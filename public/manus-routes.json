@@ -1,0 +1,29 @@
+{
+  "routes": [
+    { "path": "/", "title": "Home" },
+    { "path": "/about", "title": "About" },
+    { "path": "/articles", "title": "Articles" },
+    { "path": "/Contact", "title": "Contact" },
+    { "path": "/JobsAll", "title": "Jobs" },
+    { "path": "/JobsAll/:id", "title": "Job Details" },
+    { "path": "/JobsAll/ApplyForTheJop", "title": "Apply For The Job" },
+    { "path": "/progect", "title": "Projects" },
+    { "path": "/serves", "title": "Services" },
+    { "path": "/servesRequest", "title": "Service Request" },
+    { "path": "/legal/privacy-policy", "title": "Privacy Policy" },
+    { "path": "/legal/terms-of-service", "title": "Terms of Service" },
+    { "path": "/legal/cookie-policy", "title": "Cookie Policy" },
+    { "path": "/dashboard/login", "title": "Dashboard Login" },
+    { "path": "/dashboard", "title": "Dashboard" },
+    { "path": "/dashboard/about/experience", "title": "Manage Experience" },
+    { "path": "/dashboard/about/social-media", "title": "Manage Social Media" },
+    { "path": "/dashboard/about/info", "title": "Manage About Info" },
+    { "path": "/dashboard/articles", "title": "Manage Articles" },
+    { "path": "/dashboard/comments", "title": "Manage Comments" },
+    { "path": "/dashboard/contacts", "title": "Manage Contact Messages" },
+    { "path": "/dashboard/jobs", "title": "Manage Jobs" },
+    { "path": "/dashboard/job-applications", "title": "Review Job Applications" },
+    { "path": "/dashboard/projects", "title": "Manage Projects" },
+    { "path": "/dashboard/service-requests", "title": "Manage Service Requests" }
+  ]
+}

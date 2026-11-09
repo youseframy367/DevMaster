@@ -5,6 +5,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import Footer from "../partes/fotter"
+import { apiUrl } from "../lib/api"
 
 export default function Jobs({ numper = 6, showbutton = true }) {
   const router = useRouter();
@@ -19,7 +20,7 @@ export default function Jobs({ numper = 6, showbutton = true }) {
       try {
         const token = localStorage.getItem("accessToken");
 
-        const response = await fetch("http://localhost:3001/jobs", {
+        const response = await fetch(apiUrl("/jobs"), {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
