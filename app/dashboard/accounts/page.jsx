@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { CheckCircle2, Eye, LoaderCircle, Pencil, Plus, RefreshCw, ShieldAlert, Trash2, Users, X } from "lucide-react";
 import { addAccount, deleteAccount, getAccounts, updateAccount } from "../../lib/accounts";
-import { getCurrentUser } from "../../lib/auth";
+import { getAccessToken, getCurrentUser } from "../../lib/auth";
 
 const inputClassName = "w-full rounded-lg border border-white/10 bg-black/30 px-3 py-3 text-sm text-white outline-none transition-colors placeholder:text-gray-600 focus:border-[#01C5FF]";
 const initialForm = { email: "", username: "", password: "" };
@@ -13,8 +13,36 @@ function profileFromPayload(payload) {
   return payload?.user || payload?.data?.user || payload?.data || payload || null;
 }
 
+function roleValues(payload) {
+  const profiles = [
+    payload,
+    payload?.user,
+    payload?.data,
+    payload?.data?.user,
+    payload?.account,
+    payload?.data?.account,
+  ].filter(Boolean);
+
+  return profiles.flatMap((profile) => {
+    const roles = Array.isArray(profile.roles) ? profile.roles : [];
+    return [profile.role, profile.userRole, profile.type, ...roles].filter(Boolean).map((role) => String(role).toUpperCase());
+  });
+}
+
+function tokenRoleValues() {
+  try {
+    const token = getAccessToken();
+    const encodedPayload = token?.split(".")[1];
+    if (!encodedPayload) return [];
+    const claims = JSON.parse(atob(encodedPayload.replace(/-/g, "+").replace(/_/g, "/")));
+    return [claims.role, claims.userRole, ...(Array.isArray(claims.roles) ? claims.roles : [])].filter(Boolean).map((role) => String(role).toUpperCase());
+  } catch {
+    return [];
+  }
+}
+
 function isAdmin(payload) {
-  return String(profileFromPayload(payload)?.role || "").toUpperCase() === "ADMIN";
+  return [...roleValues(payload), ...tokenRoleValues()].includes("ADMIN");
 }
 
 function text(value, fallback = "—") {

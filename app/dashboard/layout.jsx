@@ -21,6 +21,14 @@ const navigation = [
   { href: "/dashboard/accounts", label: "Accounts", icon: KeyRound, adminOnly: true },
 ];
 
+function hasAdminRole(payload) {
+  const profiles = [payload, payload?.user, payload?.data, payload?.data?.user, payload?.account, payload?.data?.account].filter(Boolean);
+  return profiles.some((profile) => {
+    const roles = Array.isArray(profile.roles) ? profile.roles : [];
+    return [profile.role, profile.userRole, profile.type, ...roles].some((role) => String(role || "").toUpperCase() === "ADMIN");
+  });
+}
+
 export default function DashboardLayout({ children }) {
   const pathname = usePathname();
   const router = useRouter();
@@ -63,7 +71,7 @@ export default function DashboardLayout({ children }) {
     router.replace("/dashboard/login");
   };
 
-  const canManageAccounts = String(user?.role || user?.user?.role || user?.data?.role || "").toUpperCase() === "ADMIN";
+  const canManageAccounts = hasAdminRole(user);
 
   return (
     <div className="min-h-screen text-white">
